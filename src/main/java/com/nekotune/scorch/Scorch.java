@@ -1,6 +1,7 @@
 package com.nekotune.scorch;
 
 import com.mojang.logging.LogUtils;
+import com.nekotune.scorch.common.registry.ItemsRegistry;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,6 +22,7 @@ public class Scorch
     public Scorch()
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        ItemsRegistry.register(modEventBus);
         modEventBus.addListener(this::commonSetup);
         MinecraftForge.EVENT_BUS.register(this);
     }
