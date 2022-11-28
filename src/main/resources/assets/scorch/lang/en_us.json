@@ -1,3 +1,5 @@
 {
-  "item.scorch.plant_fiber": "Plant Fiber"
+  "item.scorch.plant_fiber": "Plant Fiber",
+
+  "itemGroup.modtab": "Scorch"
 }
