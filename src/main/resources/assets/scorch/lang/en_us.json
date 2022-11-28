@@ -1,5 +1,7 @@
 {
   "item.scorch.plant_fiber": "Plant Fiber",
 
+  "block.scorch.corroded_stone": "Corroded Stone",
+
   "itemGroup.modtab": "Scorch"
 }
