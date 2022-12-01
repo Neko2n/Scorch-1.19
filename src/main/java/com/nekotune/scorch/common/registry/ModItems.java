@@ -1,6 +1,7 @@
 package com.nekotune.scorch.common.registry;
 
 import com.nekotune.scorch.Scorch;
+import com.nekotune.scorch.common.items.WaterPouchItem;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -13,6 +14,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> PLANT_FIBER = ITEMS.register("plant_fiber",
             () -> new Item(new Item.Properties().tab(ModCreativeTabs.MOD_TAB)));
+
+    public static final RegistryObject<Item> WATER_POUCH = ITEMS.register("water_pouch",
+            () -> new WaterPouchItem(new Item.Properties().tab(ModCreativeTabs.MOD_TAB), 3));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
