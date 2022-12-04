@@ -3,6 +3,7 @@
   "item.scorch.water_pouch": "Water Pouch",
 
   "block.scorch.corroded_stone": "Corroded Stone",
+  "block.scorch.brittle_corroded_stone": "Brittle Corroded Stone",
 
   "itemGroup.modtab": "Scorch"
 }

@@ -1,6 +1,7 @@
 package com.nekotune.scorch.common.registry;
 
 import com.nekotune.scorch.Scorch;
+import com.nekotune.scorch.common.blocks.BrittleBlock;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
@@ -20,6 +21,8 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> CORRODED_STONE = registerBlock("corroded_stone",
             () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f, 6.0f).requiresCorrectToolForDrops()), ModCreativeTabs.MOD_TAB);
+    public static final RegistryObject<Block> BRITTLE_CORRODED_STONE = registerBlock("brittle_corroded_stone",
+            () -> new BrittleBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f, 6.0f).requiresCorrectToolForDrops()), ModCreativeTabs.MOD_TAB);
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "scorch:corroded_stone"
+    "scorch:corroded_stone",
+    "scorch:brittle_corroded_stone"
   ]
 }
