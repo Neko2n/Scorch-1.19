@@ -16,7 +16,7 @@ public class ModItems {
             () -> new Item(new Item.Properties().tab(ModCreativeTabs.MOD_TAB)));
 
     public static final RegistryObject<Item> WATER_POUCH = ITEMS.register("water_pouch",
-            () -> new WaterPouchItem(new Item.Properties().tab(ModCreativeTabs.MOD_TAB), 3));
+            () -> new WaterPouchItem(new Item.Properties().tab(ModCreativeTabs.MOD_TAB).stacksTo(1), 3));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
