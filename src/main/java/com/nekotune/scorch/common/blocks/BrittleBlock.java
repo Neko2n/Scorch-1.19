@@ -22,29 +22,29 @@ public class BrittleBlock extends Block {
     }
 
     @Override
-    public void stepOn(Level level, BlockPos blockPos, BlockState blockState, Entity entity) {
-        if (entity instanceof LivingEntity) {
+    public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
+        if (pEntity instanceof LivingEntity) {
             // Spawn particles to indicate block is brittle
-            level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, blockState).setPos(blockPos),
-                    blockPos.getX() + random.nextFloat(), random.nextFloat() * 0.8d + blockPos.getY() + 0.1d,
-                    blockPos.getZ() + random.nextFloat(), (random.nextFloat() - 0.5d) * 4.0d,
+            pLevel.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, pState).setPos(pPos),
+                    pPos.getX() + random.nextFloat(), random.nextFloat() * 0.8d + pPos.getY() + 0.1d,
+                    pPos.getZ() + random.nextFloat(), (random.nextFloat() - 0.5d) * 4.0d,
                     0.8d, (random.nextFloat() - 0.5d) * 4.0d);
-            if (!level.isClientSide) {
-                boolean flag1 = EnchantmentHelper.getEnchantmentLevel(Enchantments.FALL_PROTECTION, (LivingEntity) entity) == 0; // No feather falling
-                boolean flag2 = !((LivingEntity) entity).hasEffect(MobEffects.SLOW_FALLING); // No slow falling effect
-                boolean flag3 = (!entity.isSteppingCarefully() || entity.fallDistance > 3); // Either not crouching or falling from a distance of over 3 blocks
-                if (random.nextFloat() < Math.max(entity.fallDistance * 25.0f, 1.0f) * 0.01f && flag1 && flag2 && flag3) {
+            if (!pLevel.isClientSide) {
+                boolean flag1 = EnchantmentHelper.getEnchantmentLevel(Enchantments.FALL_PROTECTION, (LivingEntity) pEntity) == 0; // No feather falling
+                boolean flag2 = !((LivingEntity) pEntity).hasEffect(MobEffects.SLOW_FALLING); // No slow falling effect
+                boolean flag3 = (!pEntity.isSteppingCarefully() || pEntity.fallDistance > 3); // Either not crouching or falling from a distance of over 3 blocks
+                if (random.nextFloat() < Math.max(pEntity.fallDistance * 25.0f, 1.0f) * 0.01f && flag1 && flag2 && flag3) {
                     // Block break effects
-                    level.levelEvent(1022, blockPos, 0);
-                    level.levelEvent(2001, blockPos, Block.getId(blockState));
+                    pLevel.levelEvent(1022, pPos, 0);
+                    pLevel.levelEvent(2001, pPos, Block.getId(pState));
                     // Drop block at 50% chance
                     if (random.nextFloat() <= 0.5f) {
-                        dropResources(blockState, level, blockPos, null);
+                        dropResources(pState, pLevel, pPos, null);
                     }
-                    level.removeBlock(blockPos, false);
+                    pLevel.removeBlock(pPos, false);
                 }
             }
         }
-        super.stepOn(level, blockPos, blockState, entity);
+        super.stepOn(pLevel, pPos, pState, pEntity);
     }
 }
