@@ -5,5 +5,7 @@
   "block.scorch.corroded_stone": "Corroded Stone",
   "block.scorch.brittle_corroded_stone": "Brittle Corroded Stone",
 
+  "tooltip.scorch.water_pouch": "Drinks:",
+
   "itemGroup.modtab": "Scorch"
 }

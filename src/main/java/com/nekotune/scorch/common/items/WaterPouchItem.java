@@ -1,5 +1,6 @@
 package com.nekotune.scorch.common.items;
 
+import net.minecraft.ChatFormatting;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -90,6 +91,8 @@ public class WaterPouchItem extends Item {
 
     @Override
     public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        pTooltipComponents.add(Component.translatable("tooltip.scorch.water_pouch").withStyle(ChatFormatting.GRAY)
+                .append(Component.literal(" " + charges + "/" + MAX_CHARGES).withStyle(((charges > 0) ? ChatFormatting.AQUA : ChatFormatting.RED))));
         super.appendHoverText(pStack, pLevel, pTooltipComponents, pIsAdvanced);
     }
 }
