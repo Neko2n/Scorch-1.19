@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "scorch:block/light_bulb" }
+  }
+}

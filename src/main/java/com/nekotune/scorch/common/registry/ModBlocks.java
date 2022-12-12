@@ -2,12 +2,14 @@ package com.nekotune.scorch.common.registry;
 
 import com.nekotune.scorch.Scorch;
 import com.nekotune.scorch.common.blocks.BrittleBlock;
+import com.nekotune.scorch.common.blocks.LightBulbBlock;
+import com.nekotune.scorch.common.items.UseableBlockItem;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.Material;
+import net.minecraft.world.level.material.MaterialColor;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -20,18 +22,31 @@ public class ModBlocks {
             DeferredRegister.create(ForgeRegistries.BLOCKS, Scorch.MOD_ID);
 
     public static final RegistryObject<Block> CORRODED_STONE = registerBlock("corroded_stone",
-            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f, 6.0f).requiresCorrectToolForDrops()), ModCreativeTabs.MOD_TAB);
+            () -> new Block(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f, 6.0f).requiresCorrectToolForDrops()),
+            new Item.Properties().tab(ModCreativeTabs.MOD_TAB));
     public static final RegistryObject<Block> BRITTLE_CORRODED_STONE = registerBlock("brittle_corroded_stone",
-            () -> new BrittleBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f, 6.0f).requiresCorrectToolForDrops()), ModCreativeTabs.MOD_TAB);
+            () -> new BrittleBlock(BlockBehaviour.Properties.of(Material.STONE).strength(1.5f, 6.0f).requiresCorrectToolForDrops()),
+            new Item.Properties().tab(ModCreativeTabs.MOD_TAB));
 
-    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, CreativeModeTab tab) {
+    public static final RegistryObject<Block> LIGHT_BULB = registerUseableBlock("light_bulb",
+            () -> new LightBulbBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.SAND).strength(0.1f, 0.1f)),
+            new Item.Properties().tab(ModCreativeTabs.MOD_TAB).food(ModFoods.LIGHT_BULB));
+
+    // Unfinished
+    public static final RegistryObject<Block> BUBBLE_CACTUS = registerBlock("bubble_cactus",
+            () -> new Block(BlockBehaviour.Properties.of(Material.CACTUS, MaterialColor.COLOR_GREEN).strength(1.0f, 1.0f)),
+            new Item.Properties().tab(ModCreativeTabs.MOD_TAB));
+
+    private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block, Item.Properties properties) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
-        registerBlockItem(name, toReturn, tab);
+        ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), properties));
         return toReturn;
     }
 
-    private static <T extends Block> RegistryObject<Item> registerBlockItem(String name, RegistryObject<T> block, CreativeModeTab tab) {
-        return ModItems.ITEMS.register(name, () -> new BlockItem(block.get(), new Item.Properties().tab(tab)));
+    private static <T extends Block> RegistryObject<T> registerUseableBlock(String name, Supplier<T> block, Item.Properties properties) {
+        RegistryObject<T> toReturn = BLOCKS.register(name, block);
+        ModItems.ITEMS.register(name, () -> new UseableBlockItem(block.get(), properties));
+        return toReturn;
     }
 
     public static void register(IEventBus eventBus) {
