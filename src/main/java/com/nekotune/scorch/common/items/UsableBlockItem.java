@@ -5,8 +5,8 @@ import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class UseableBlockItem extends BlockItem {
-    public UseableBlockItem(Block pBlock, Properties pProperties) {
+public class UsableBlockItem extends BlockItem {
+    public UsableBlockItem(Block pBlock, Properties pProperties) {
         super(pBlock, pProperties);
     }
 
